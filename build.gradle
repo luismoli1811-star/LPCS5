@@ -1,0 +1,36 @@
+plugins {
+    id 'com.android.application'
+}
+
+android {
+    namespace "com.luismoli1811star.lpcs5"
+    compileSdk 34
+
+    defaultConfig {
+        applicationId "com.luismoli1811star.lpcs5"
+        minSdk 26
+        targetSdk 34
+        versionCode 1
+        versionName "0.1.0-beta"
+        externalNativeBuild {
+            cmake {
+                cppFlags "-std=c++20"
+                arguments "-DANDROID_STL=c++_shared"
+            }
+        }
+    }
+
+    externalNativeBuild {
+        cmake {
+            path "../CMakeLists.txt"
+        }
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+        }
+    }
+}
+
+dependencies {}
