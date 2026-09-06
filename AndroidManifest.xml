@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.rpcs5.emulador"
+    android:versionCode="1"
+    android:versionName="0.1.0">
+
+    <!-- 📱 Versiones de Android soportadas -->
+    <uses-sdk
+        android:minSdkVersion="29"   <!-- Android 10 -->
+        android:targetSdkVersion="33" <!-- Android 13 -->
+        android:compileSdkVersion="33" />
+
+    <!-- 🔒 Permisos necesarios -->
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"
+        android:maxSdkVersion="32" />
+    <uses-permission android:name="android.permission.READ_MEDIA_IMAGES" />
+    <uses-permission android:name="android.permission.READ_MEDIA_VIDEO" />
+    <uses-permission android:name="android.permission.READ_MEDIA_AUDIO" />
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.VIBRATE" />
+    <uses-permission android:name="android.permission.WAKE_LOCK" />
+
+    <!-- 🎮 Características de hardware -->
+    <uses-feature android:glEsVersion="0x00030002" android:required="true /> <!-- OpenGL ES 3.2 -->
+    <uses-feature android:name="android.hardware.vulkan.version" android:value="0x4010000" /> <!-- Vulkan 1.1 -->
+    <uses-feature android:name="android.hardware.touchscreen" android:required="false" />
+    <uses-feature android:name="android.hardware.gamepad" android:required="false" />
+
+    <application
+        android:allowBackup="true"
+        android:icon="@mipmap/ic_launcher"
+        android:label="RPCS5"
+        android:roundIcon="@mipmap/ic_launcher_round"
+        android:supportsRtl="true"
+        android:theme="@style/Theme.AppCompat.Light.NoActionBar"
+        android:hardwareAccelerated="true"
+        android:requestLegacyExternalStorage="true">
+
+        <activity
+            android:name=".MainActivity"
+            android:exported="true"
+            android:screenOrientation="unspecified"
+            android:configChanges="orientation|screenSize|keyboardHidden"
+            android:launchMode="singleTask">
+            
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+
+            <!-- Asociar con formatos de juego -->
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW" />
+                <category android:name="android.intent.category.DEFAULT" />
+                <data android:mimeType="application/octet-stream" />
+                <data android:pathPattern=".*\\.pkg" />
+                <data android:pathPattern=".*\\.iso" />
+                <data android:pathPattern=".*\\.state" />
+                <data android:pathPattern=".*\\.sav" />
+            </intent-filter>
+        </activity>
+    </application>
+</manifest>
